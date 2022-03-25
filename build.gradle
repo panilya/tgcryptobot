@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group 'com.panilya.tgcryptobot'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+task stage(type: Copy) {
+    from sourceSets.main.runtimeClasspath
+    into 'build/staging'
+}
+stage.dependsOn build
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.14.3'
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    implementation 'org.telegram:telegrambots:5.7.1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.2'
+
+}
+
+test {
+    useJUnitPlatform()
+}
