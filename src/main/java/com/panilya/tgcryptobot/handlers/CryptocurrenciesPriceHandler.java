@@ -2,8 +2,8 @@ package com.panilya.tgcryptobot.handlers;
 
 import com.panilya.tgcryptobot.BotConfig;
 import com.panilya.tgcryptobot.services.MessageCreator;
-import com.panilya.tgcryptobot.services.priceServiceFactories.FactoryMaker;
-import com.panilya.tgcryptobot.services.priceServiceFactories.PriceServiceFactory;
+import com.panilya.tgcryptobot.services.priceservicefactories.FactoryMaker;
+import com.panilya.tgcryptobot.services.priceservicefactories.PriceServiceFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -59,6 +59,10 @@ public class CryptocurrenciesPriceHandler extends TelegramLongPollingBot {
             return priceServiceFactory.createDogecoinPriceService().doGetCurrencyPrice(message);
         } else if (message.getText().equals("LTC")) {
             return priceServiceFactory.createLitecoinPriceService().doGetCurrencyPrice(message);
+        } else if (message.getText().equals("SOL")) {
+            return priceServiceFactory.createSolanaPriceService().doGetCurrencyPrice(message);
+        } else if (message.getText().equals("ADA")) {
+            return priceServiceFactory.createCardanoPriceService().doGetCurrencyPrice(message);
         }
         return new MessageCreator().createShowHelpMessage(message);
     }

@@ -18,7 +18,7 @@ public class ButtonsService {
 
         KeyboardRow keyboardButtons = new KeyboardRow();
         keyboardButtons.add(new KeyboardButton("Show cryptocurrencies prices"));
-        keyboardButtons.add(new KeyboardButton("Show help"));
+        keyboardButtons.add(new KeyboardButton("Information"));
         keyboardRows.add(keyboardButtons);
         replyKeyboardMarkup.setKeyboard(keyboardRows);
 
@@ -33,10 +33,13 @@ public class ButtonsService {
         List<KeyboardRow> keyboardRows = new ArrayList<>();
 
         KeyboardRow keyboardButtons = new KeyboardRow();
+
         keyboardButtons.add(new KeyboardButton("BTC"));
         keyboardButtons.add(new KeyboardButton("LTC"));
         keyboardButtons.add(new KeyboardButton("DOGE"));
         keyboardButtons.add(new KeyboardButton("ETH"));
+        keyboardButtons.add(new KeyboardButton("SOL"));
+        keyboardButtons.add(new KeyboardButton("ADA"));
 
         keyboardRows.add(keyboardButtons);
         replyKeyboardMarkup.setKeyboard(keyboardRows);

@@ -1,4 +1,4 @@
-package com.panilya.tgcryptobot.services.priceServiceFactories;
+package com.panilya.tgcryptobot.services.priceservicefactories;
 
 import com.panilya.tgcryptobot.BotConfig;
 
@@ -14,5 +14,4 @@ public class FactoryMaker {
                 throw new IllegalArgumentException("RequestType is not supported");
         }
     }
-
 }

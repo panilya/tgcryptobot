@@ -1,4 +1,4 @@
-package com.panilya.tgcryptobot.services.apiServices;
+package com.panilya.tgcryptobot.services.apiservices;
 
 import com.panilya.tgcryptobot.services.AbstractPriceServiceAPI;
 import org.apache.http.client.methods.HttpGet;

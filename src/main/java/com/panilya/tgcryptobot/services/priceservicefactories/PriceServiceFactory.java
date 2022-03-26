@@ -1,4 +1,4 @@
-package com.panilya.tgcryptobot.services.priceServiceFactories;
+package com.panilya.tgcryptobot.services.priceservicefactories;
 
 import com.panilya.tgcryptobot.services.PriceService;
 
@@ -12,4 +12,7 @@ public interface PriceServiceFactory {
 
     PriceService createLitecoinPriceService();
 
+    PriceService createSolanaPriceService();
+
+    PriceService createCardanoPriceService();
 }

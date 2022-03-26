@@ -1,9 +1,9 @@
-package com.panilya.tgcryptobot.services.priceServiceFactories;
+package com.panilya.tgcryptobot.services.priceservicefactories;
 
 import com.panilya.tgcryptobot.services.PriceService;
-import com.panilya.tgcryptobot.services.apiServices.BitcoinPriceServiceAPI;
-import com.panilya.tgcryptobot.services.apiServices.DogecoinPriceServiceAPI;
-import com.panilya.tgcryptobot.services.apiServices.LitecoinPriceServiceAPI;
+import com.panilya.tgcryptobot.services.apiservices.BitcoinPriceServiceAPI;
+import com.panilya.tgcryptobot.services.apiservices.DogecoinPriceServiceAPI;
+import com.panilya.tgcryptobot.services.apiservices.LitecoinPriceServiceAPI;
 
 public class DefaultPriceServiceFactoryAPI implements PriceServiceFactory {
 
@@ -25,5 +25,15 @@ public class DefaultPriceServiceFactoryAPI implements PriceServiceFactory {
     @Override
     public PriceService createLitecoinPriceService() {
         return new LitecoinPriceServiceAPI();
+    }
+
+    @Override
+    public PriceService createSolanaPriceService() {
+        throw new UnsupportedOperationException("Not supported");
+    }
+
+    @Override
+    public PriceService createCardanoPriceService() {
+        throw new UnsupportedOperationException("Not supported");
     }
 }

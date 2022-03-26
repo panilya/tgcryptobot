@@ -1,10 +1,7 @@
-package com.panilya.tgcryptobot.services.priceServiceFactories;
+package com.panilya.tgcryptobot.services.priceservicefactories;
 
 import com.panilya.tgcryptobot.services.PriceService;
-import com.panilya.tgcryptobot.services.scrapingservices.BitcoinPriceServiceScraping;
-import com.panilya.tgcryptobot.services.scrapingservices.DogecoinPriceServiceScraping;
-import com.panilya.tgcryptobot.services.scrapingservices.EthPriceServiceScraping;
-import com.panilya.tgcryptobot.services.scrapingservices.LitecoinPriceServiceScraping;
+import com.panilya.tgcryptobot.services.scrapingservices.*;
 
 public class DefaultPriceServiceFactoryScraping implements PriceServiceFactory {
 
@@ -26,5 +23,15 @@ public class DefaultPriceServiceFactoryScraping implements PriceServiceFactory {
     @Override
     public PriceService createLitecoinPriceService() {
         return new LitecoinPriceServiceScraping();
+    }
+
+    @Override
+    public PriceService createSolanaPriceService() {
+        return new SolanaPriceServiceScraping();
+    }
+
+    @Override
+    public PriceService createCardanoPriceService() {
+        return new CardanoPriceServiceScraping();
     }
 }
