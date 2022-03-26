@@ -16,6 +16,6 @@
 # IDE
 .idea
 
-.gradle
-
 build
+
+.gradle
