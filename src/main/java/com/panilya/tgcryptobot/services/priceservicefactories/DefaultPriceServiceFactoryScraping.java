@@ -34,4 +34,29 @@ public class DefaultPriceServiceFactoryScraping implements PriceServiceFactory {
     public PriceService createCardanoPriceService() {
         return new CardanoPriceServiceScraping();
     }
+
+    @Override
+    public PriceService createBNBPriceService() {
+        return new BNBPriceServiceScraping();
+    }
+
+    @Override
+    public PriceService createTerraPriceService() {
+        return new TerraPriceServiceScraping();
+    }
+
+    @Override
+    public PriceService createXRPPriceService() {
+        return new XRPPriceServiceScraping();
+    }
+
+    @Override
+    public PriceService createAvalanchePriceService() {
+        return new AvalanchePriceServiceScraping();
+    }
+
+    @Override
+    public PriceService createPolkadotPriceService() {
+        return new PolkadotPriceService();
+    }
 }

@@ -79,6 +79,16 @@ public class CryptocurrenciesPriceHandler extends TelegramLongPollingBot {
             return priceServiceFactory.createSolanaPriceService().doGetCurrencyPrice(message);
         } else if (text.equals("ADA")) {
             return priceServiceFactory.createCardanoPriceService().doGetCurrencyPrice(message);
+        } else if (text.equals("BNB")) {
+            return priceServiceFactory.createBNBPriceService().doGetCurrencyPrice(message);
+        } else if (text.equals("Terra")) {
+            return priceServiceFactory.createTerraPriceService().doGetCurrencyPrice(message);
+        } else if (text.equals("XRP")) {
+            return priceServiceFactory.createXRPPriceService().doGetCurrencyPrice(message);
+        } else if (text.equals("AVAX")) {
+            return priceServiceFactory.createAvalanchePriceService().doGetCurrencyPrice(message);
+        } else if (text.equals("DOT")) {
+            return priceServiceFactory.createPolkadotPriceService().doGetCurrencyPrice(message);
         }
         return new MessageCreator().createShowHelpMessage(message);
     }

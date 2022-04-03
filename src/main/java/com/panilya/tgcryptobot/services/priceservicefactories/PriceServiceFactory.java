@@ -15,4 +15,14 @@ public interface PriceServiceFactory {
     PriceService createSolanaPriceService();
 
     PriceService createCardanoPriceService();
+
+    PriceService createBNBPriceService();
+
+    PriceService createTerraPriceService();
+
+    PriceService createXRPPriceService();
+
+    PriceService createAvalanchePriceService();
+
+    PriceService createPolkadotPriceService();
 }

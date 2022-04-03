@@ -1,6 +1,7 @@
 package com.panilya.tgcryptobot.services.scrapingservices;
 
 import com.panilya.tgcryptobot.services.AbstractPriceServiceScraping;
+import com.panilya.tgcryptobot.settings.ScrapingVars;
 
 public class EthPriceServiceScraping extends AbstractPriceServiceScraping {
 
@@ -11,6 +12,6 @@ public class EthPriceServiceScraping extends AbstractPriceServiceScraping {
 
     @Override
     protected String doGetPercentageOfCoin() {
-        return "span[class=sc-15yy2pl-0 feeyND]";
+        return ScrapingVars.JSOUP_PERCENTAGE_gEePkg;
     }
 }
