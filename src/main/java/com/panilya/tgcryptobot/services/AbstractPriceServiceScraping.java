@@ -33,7 +33,7 @@ public abstract class AbstractPriceServiceScraping implements PriceService {
 //        Elements element = doc.select(" span[class^=\"icon\"]");
 
         final String arrowUp = "\uD83D\uDD3C";
-        final String arrowDown = "\uD83D\uDD3D";
+        final String arrowDown = "\uD83D\uDD3B";
 
         String holdArrow;
         if (element.hasClass("icon-Caret-up")) {
