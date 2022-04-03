@@ -44,7 +44,7 @@ public abstract class AbstractPriceServiceScraping implements PriceService {
 
         System.out.println(message.getText()); // Returns KeyboardButton value (BTC, ETH etc.)
 
-        return new MessageCreator().createRawMessage(message, price + " " + percentage + holdArrow);
+        return new MessageCreator().createRawMessage(message, price + " " + "*" + percentage + "*" + holdArrow);
     }
 
     protected abstract String doRequest();

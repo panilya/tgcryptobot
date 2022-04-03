@@ -30,10 +30,19 @@ public class MessageCreator {
                 .build();
     }
 
+    public SendMessage createInlineMessage(Message message, String text) {
+        return SendMessage.builder()
+                .chatId(message.getChatId().toString())
+                .text(text)
+                .replyMarkup(new ButtonsService().createInlineCryptoKeyboard())
+                .build();
+    }
+
     public SendMessage createRawMessage(Message message, String chatResponse) {
         return SendMessage.builder()
                 .chatId(String.valueOf(message.getChatId()))
                 .text(chatResponse)
+                .parseMode("Markdown")
                 .build();
     }
 }
