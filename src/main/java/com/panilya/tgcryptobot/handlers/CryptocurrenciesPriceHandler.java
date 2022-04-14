@@ -71,27 +71,27 @@ public class CryptocurrenciesPriceHandler extends TelegramLongPollingBot {
         final PriceServiceFactory priceServiceFactory = FactoryMaker.makeFactory(BotConfig.REQUEST_TYPE);
         switch (text) {
             case "BTC":
-                return priceServiceFactory.createBitcoinPriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createBitcoinPriceService().doGetCurrencyPrice(message, text);
             case "ETH":
-                return priceServiceFactory.createEthereumPriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createEthereumPriceService().doGetCurrencyPrice(message, text);
             case "DOGE":
-                return priceServiceFactory.createDogecoinPriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createDogecoinPriceService().doGetCurrencyPrice(message, text);
             case "LTC":
-                return priceServiceFactory.createLitecoinPriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createLitecoinPriceService().doGetCurrencyPrice(message, text);
             case "SOL":
-                return priceServiceFactory.createSolanaPriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createSolanaPriceService().doGetCurrencyPrice(message, text);
             case "ADA":
-                return priceServiceFactory.createCardanoPriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createCardanoPriceService().doGetCurrencyPrice(message, text);
             case "BNB":
-                return priceServiceFactory.createBNBPriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createBNBPriceService().doGetCurrencyPrice(message, text);
             case "Terra":
-                return priceServiceFactory.createTerraPriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createTerraPriceService().doGetCurrencyPrice(message, text);
             case "XRP":
-                return priceServiceFactory.createXRPPriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createXRPPriceService().doGetCurrencyPrice(message, text);
             case "AVAX":
-                return priceServiceFactory.createAvalanchePriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createAvalanchePriceService().doGetCurrencyPrice(message, text);
             case "DOT":
-                return priceServiceFactory.createPolkadotPriceService().doGetCurrencyPrice(message);
+                return priceServiceFactory.createPolkadotPriceService().doGetCurrencyPrice(message, text);
         }
         return new MessageCreator().createShowHelpMessage(message);
     }

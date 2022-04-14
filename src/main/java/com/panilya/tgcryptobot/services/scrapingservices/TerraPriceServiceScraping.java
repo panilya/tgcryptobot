@@ -9,8 +9,4 @@ public class TerraPriceServiceScraping extends AbstractPriceServiceScraping {
         return "https://coinmarketcap.com/currencies/terra-luna/";
     }
 
-    @Override
-    protected String doGetPercentageOfCoin() {
-        return ScrapingVars.JSOUP_PERCENTAGE_gEePkg;
-    }
 }

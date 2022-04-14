@@ -7,5 +7,6 @@ import java.io.IOException;
 
 public interface PriceService {
 
-    SendMessage doGetCurrencyPrice(Message message) throws IOException;
+    SendMessage doGetCurrencyPrice(Message message, String coinName) throws IOException;
+
 }

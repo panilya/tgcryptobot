@@ -9,8 +9,4 @@ public class SolanaPriceServiceScraping extends AbstractPriceServiceScraping {
         return "https://coinmarketcap.com/currencies/solana/";
     }
 
-    @Override
-    protected String doGetPercentageOfCoin() {
-        return ScrapingVars.JSOUP_PERCENTAGE_feeyND;
-    }
 }

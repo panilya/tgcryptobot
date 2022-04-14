@@ -17,7 +17,7 @@ public abstract class AbstractPriceServiceAPI implements PriceService {
     Logger LOGGER = LoggerFactory.getLogger(AbstractPriceServiceAPI.class);
 
     @Override
-    public SendMessage doGetCurrencyPrice(Message message) throws IOException {
+    public SendMessage doGetCurrencyPrice(Message message, String text) throws IOException {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             ObjectMapper mapper = new ObjectMapper();
             CryptoCoinEntity response = client.execute(doRequest(), httpResponse ->

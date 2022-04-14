@@ -9,8 +9,4 @@ public class LitecoinPriceServiceScraping extends AbstractPriceServiceScraping {
         return "https://coinmarketcap.com/currencies/litecoin/";
     }
 
-    @Override
-    protected String doGetPercentageOfCoin() {
-        return ScrapingVars.JSOUP_PERCENTAGE_gEePkg;
-    }
 }

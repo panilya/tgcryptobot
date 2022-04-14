@@ -9,8 +9,4 @@ public class XRPPriceServiceScraping extends AbstractPriceServiceScraping {
         return "https://coinmarketcap.com/currencies/xrp/";
     }
 
-    @Override
-    protected String doGetPercentageOfCoin() {
-        return ScrapingVars.JSOUP_PERCENTAGE_gEePkg;
-    }
 }

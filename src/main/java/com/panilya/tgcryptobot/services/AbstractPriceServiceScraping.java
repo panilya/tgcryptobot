@@ -1,5 +1,6 @@
 package com.panilya.tgcryptobot.services;
 
+import com.panilya.tgcryptobot.settings.ScrapingVars;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -16,13 +17,17 @@ public abstract class AbstractPriceServiceScraping implements PriceService {
     }
 
     @Override
-    public SendMessage doGetCurrencyPrice(Message message) throws IOException {
+    public SendMessage doGetCurrencyPrice(Message message, String coinName) throws IOException {
         Document doc = connectJsoup();
         String price = doc.select("div.priceValue").text();
-//        String percentage = doc.select("span[class=sc-15yy2pl-0 gEePkg]").text();
+
         String percentage;
         try {
-            percentage = doc.select(doGetPercentageOfCoin()).get(0).text();
+            if (doc.hasClass(ScrapingVars.JSOUP_PERCENTAGE_gEePkg)) {
+                percentage = doc.select(ScrapingVars.JSOUP_PERCENTAGE_gEePkg).get(0).text();
+            } else {
+                percentage = doc.select(ScrapingVars.JSOUP_PERCENTAGE_feeyND).get(0).text();
+            }
         } catch (IndexOutOfBoundsException ex) {
             percentage = "0%";
         }
@@ -44,11 +49,9 @@ public abstract class AbstractPriceServiceScraping implements PriceService {
 
         System.out.println(message.getText()); // Returns KeyboardButton value (BTC, ETH etc.)
 
-        return new MessageCreator().createRawMessage(message, price + " " + "*" + percentage + "*" + holdArrow);
+        return new MessageCreator().createRawMessage(message, coinName + ":" + "\n" + price + " " + "*" + percentage + "*" + holdArrow);
     }
 
     protected abstract String doRequest();
-
-    protected abstract String doGetPercentageOfCoin();
 
 }

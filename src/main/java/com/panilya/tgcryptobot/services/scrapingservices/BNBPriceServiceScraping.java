@@ -9,8 +9,4 @@ public class BNBPriceServiceScraping extends AbstractPriceServiceScraping {
         return "https://coinmarketcap.com/currencies/bnb/";
     }
 
-    @Override
-    protected String doGetPercentageOfCoin() {
-        return ScrapingVars.JSOUP_PERCENTAGE_gEePkg;
-    }
 }
