@@ -12,6 +12,8 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.time.Duration;
+
 public class CryptocurrenciesPriceHandler extends TelegramLongPollingBot {
 
     private static final String START_COMMAND = "/start";
@@ -22,18 +24,18 @@ public class CryptocurrenciesPriceHandler extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        //long start = System.nanoTime();
+//        long start = System.nanoTime();
         if (update.hasMessage()) {
             try {
                 executeMessage(parseMessage(update.getMessage()));
-                //System.out.println("Processed in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
+//                System.out.println("Processed in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else if (update.hasCallbackQuery()) {
             try {
                 executeMessage(handleCallbackQuery(update.getCallbackQuery()));
-                //System.out.println("Processed in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
+//                System.out.println("Processed in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -67,28 +69,29 @@ public class CryptocurrenciesPriceHandler extends TelegramLongPollingBot {
     //TODO: Refactor this function because in future will be many currencies
     private SendMessage parseCryptocurrency(Message message, String text) throws Exception {
         final PriceServiceFactory priceServiceFactory = FactoryMaker.makeFactory(BotConfig.REQUEST_TYPE);
-        if (text.equals("BTC")) {
-            return priceServiceFactory.createBitcoinPriceService().doGetCurrencyPrice(message);
-        } else if (text.equals("ETH")) {
-            return priceServiceFactory.createEthereumPriceService().doGetCurrencyPrice(message);
-        } else if (text.equals("DOGE")) {
-            return priceServiceFactory.createDogecoinPriceService().doGetCurrencyPrice(message);
-        } else if (text.equals("LTC")) {
-            return priceServiceFactory.createLitecoinPriceService().doGetCurrencyPrice(message);
-        } else if (text.equals("SOL")) {
-            return priceServiceFactory.createSolanaPriceService().doGetCurrencyPrice(message);
-        } else if (text.equals("ADA")) {
-            return priceServiceFactory.createCardanoPriceService().doGetCurrencyPrice(message);
-        } else if (text.equals("BNB")) {
-            return priceServiceFactory.createBNBPriceService().doGetCurrencyPrice(message);
-        } else if (text.equals("Terra")) {
-            return priceServiceFactory.createTerraPriceService().doGetCurrencyPrice(message);
-        } else if (text.equals("XRP")) {
-            return priceServiceFactory.createXRPPriceService().doGetCurrencyPrice(message);
-        } else if (text.equals("AVAX")) {
-            return priceServiceFactory.createAvalanchePriceService().doGetCurrencyPrice(message);
-        } else if (text.equals("DOT")) {
-            return priceServiceFactory.createPolkadotPriceService().doGetCurrencyPrice(message);
+        switch (text) {
+            case "BTC":
+                return priceServiceFactory.createBitcoinPriceService().doGetCurrencyPrice(message);
+            case "ETH":
+                return priceServiceFactory.createEthereumPriceService().doGetCurrencyPrice(message);
+            case "DOGE":
+                return priceServiceFactory.createDogecoinPriceService().doGetCurrencyPrice(message);
+            case "LTC":
+                return priceServiceFactory.createLitecoinPriceService().doGetCurrencyPrice(message);
+            case "SOL":
+                return priceServiceFactory.createSolanaPriceService().doGetCurrencyPrice(message);
+            case "ADA":
+                return priceServiceFactory.createCardanoPriceService().doGetCurrencyPrice(message);
+            case "BNB":
+                return priceServiceFactory.createBNBPriceService().doGetCurrencyPrice(message);
+            case "Terra":
+                return priceServiceFactory.createTerraPriceService().doGetCurrencyPrice(message);
+            case "XRP":
+                return priceServiceFactory.createXRPPriceService().doGetCurrencyPrice(message);
+            case "AVAX":
+                return priceServiceFactory.createAvalanchePriceService().doGetCurrencyPrice(message);
+            case "DOT":
+                return priceServiceFactory.createPolkadotPriceService().doGetCurrencyPrice(message);
         }
         return new MessageCreator().createShowHelpMessage(message);
     }
