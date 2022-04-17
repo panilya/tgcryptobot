@@ -1,5 +1,6 @@
 package com.panilya.tgcryptobot.services;
 
+import com.panilya.tgcryptobot.BotConfig;
 import com.panilya.tgcryptobot.settings.ScrapingVars;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,35 +22,36 @@ public abstract class AbstractPriceServiceScraping implements PriceService {
         Document doc = connectJsoup();
         String price = doc.select("div.priceValue").text();
 
-        String percentage;
-        try {
-            if (doc.hasClass(ScrapingVars.JSOUP_PERCENTAGE_gEePkg)) {
-                percentage = doc.select(ScrapingVars.JSOUP_PERCENTAGE_gEePkg).get(0).text();
-            } else {
-                percentage = doc.select(ScrapingVars.JSOUP_PERCENTAGE_feeyND).get(0).text();
+        if (BotConfig.SHOW_PERCENTAGE) {
+            String percentage;
+            try {
+                if (doc.hasClass(ScrapingVars.JSOUP_PERCENTAGE_gEePkg)) {
+                    percentage = doc.select(ScrapingVars.JSOUP_PERCENTAGE_gEePkg).get(0).text();
+                } else {
+                    percentage = doc.select(ScrapingVars.JSOUP_PERCENTAGE_feeyND).get(0).text();
+                }
+            } catch (IndexOutOfBoundsException ex) {
+                percentage = "0%";
             }
-        } catch (IndexOutOfBoundsException ex) {
-            percentage = "0%";
+            System.out.println(price);
+            System.out.println(percentage);
+
+            Elements arrow = doc.select(".gEePkg span[class^=\"icon\"]");
+
+            final String arrowUp = "\uD83D\uDD3C";
+            final String arrowDown = "\uD83D\uDD3B";
+
+            String holdArrow;
+            if (arrow.hasClass("icon-Caret-up")) {
+                holdArrow = arrowUp;
+            } else {
+                holdArrow = arrowDown;
+            }
+
+            return new MessageCreator().createRawMessage(message, coinName + ":" + "\n" + price + " " + "*" + percentage + "*" + holdArrow);
         }
-        System.out.println(price);
-        System.out.println(percentage);
 
-        Elements element = doc.select(".gEePkg span[class^=\"icon\"]");
-//        Elements element = doc.select(" span[class^=\"icon\"]");
-
-        final String arrowUp = "\uD83D\uDD3C";
-        final String arrowDown = "\uD83D\uDD3B";
-
-        String holdArrow;
-        if (element.hasClass("icon-Caret-up")) {
-            holdArrow = arrowUp;
-        } else {
-            holdArrow = arrowDown;
-        }
-
-        System.out.println(message.getText()); // Returns KeyboardButton value (BTC, ETH etc.)
-
-        return new MessageCreator().createRawMessage(message, coinName + ":" + "\n" + price + " " + "*" + percentage + "*" + holdArrow);
+        return new MessageCreator().createRawMessage(message, coinName + ":" + "\n" + "*" + price + "*");
     }
 
     protected abstract String doRequest();
