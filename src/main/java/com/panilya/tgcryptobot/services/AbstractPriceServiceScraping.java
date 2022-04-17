@@ -13,8 +13,7 @@ import java.io.IOException;
 public abstract class AbstractPriceServiceScraping implements PriceService {
 
     private Document connectJsoup() throws IOException {
-        Document doc = Jsoup.connect(doRequest()).get();
-        return doc;
+        return Jsoup.connect(doRequest()).get();
     }
 
     @Override
