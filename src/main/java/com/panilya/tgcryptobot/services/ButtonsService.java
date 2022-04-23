@@ -1,5 +1,6 @@
 package com.panilya.tgcryptobot.services;
 
+import com.google.common.collect.Lists;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -7,7 +8,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ButtonsService {
 
@@ -29,27 +32,19 @@ public class ButtonsService {
 
     public InlineKeyboardMarkup createInlineCryptoKeyboard() {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
-        List<InlineKeyboardButton> row1 = new ArrayList<>(3);
-        row1.add(InlineKeyboardButton.builder().text("BTC").callbackData("BTC").build());
-        row1.add(InlineKeyboardButton.builder().text("Ethereum").callbackData("ETH").build());
-        row1.add(InlineKeyboardButton.builder().text("BNB").callbackData("BNB").build());
 
-        List<InlineKeyboardButton> row2 = new ArrayList<>(3);
-        row2.add(InlineKeyboardButton.builder().text("Solana").callbackData("SOL").build());
-        row2.add(InlineKeyboardButton.builder().text("XRP").callbackData("XRP").build());
-        row2.add(InlineKeyboardButton.builder().text("Terra").callbackData("Terra").build());
-        
-        List<InlineKeyboardButton> row3 = new ArrayList<>(3);
-        row3.add(InlineKeyboardButton.builder().text("Cardano").callbackData("ADA").build());
-        row3.add(InlineKeyboardButton.builder().text("Avalanche").callbackData("AVAX").build());
-        row3.add(InlineKeyboardButton.builder().text("Polkadot").callbackData("DOT").build());
+        EnumSet<CoinRegistry> enumSet = EnumSet.allOf(CoinRegistry.class);
 
+        var streamOfCoins = enumSet.stream()
+                .map(coin -> InlineKeyboardButton.builder()
+                        .text(coin.name())
+                        .callbackData(coin.getShortName())
+                        .build())
+                .collect(Collectors.toList());
 
-        rows.add(row1);
-        rows.add(row2);
-        rows.add(row3);
-        inlineKeyboardMarkup.setKeyboard(rows);
+        List<List<InlineKeyboardButton>> partitionedList = Lists.partition(streamOfCoins, 3);
+
+        inlineKeyboardMarkup.setKeyboard(partitionedList);
 
         return inlineKeyboardMarkup;
     }
