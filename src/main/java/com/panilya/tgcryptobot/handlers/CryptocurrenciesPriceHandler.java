@@ -6,6 +6,7 @@ import com.panilya.tgcryptobot.services.priceservicefactories.FactoryMaker;
 import com.panilya.tgcryptobot.services.priceservicefactories.PriceServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -23,7 +24,7 @@ public class CryptocurrenciesPriceHandler extends TelegramLongPollingBot {
     Logger LOGGER = LoggerFactory.getLogger(CryptocurrenciesPriceHandler.class);
 
     private static final String START_COMMAND = "/start";
-    private static final String CRYPTOCURRENCY_PRICE = "Show cryptocurrencies prices";
+    private static final String CRYPTOCURRENCY_PRICE = "Cryptocurrency prices";
     private static final String CONVERT_PRICE = "Convert cryptocurrency to another (crypto)currency";
     private static final String SHOW_HELP = "Show help";
     private MessageCreator messageCreator = new MessageCreator();
@@ -41,14 +42,14 @@ public class CryptocurrenciesPriceHandler extends TelegramLongPollingBot {
                     executeMessage(parseMessage(update.getMessage()));
                     LOGGER.info("Processed message in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    LOGGER.error("Error while processing message", e);
                 }
             } else if (update.hasCallbackQuery()) {
                 try {
                     executeMessage(handleCallbackQuery(update.getCallbackQuery()));
                     LOGGER.info("Processed message in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    LOGGER.error("Error while processing callback", e);
                 }
             }
         });
