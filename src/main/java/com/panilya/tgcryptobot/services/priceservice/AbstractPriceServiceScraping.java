@@ -32,8 +32,8 @@ public abstract class AbstractPriceServiceScraping implements PriceService {
             } catch (IndexOutOfBoundsException ex) {
                 percentage = "0%";
             }
-            System.out.println(price);
-            System.out.println(percentage);
+//            System.out.println(price);
+//            System.out.println(percentage);
 
             Elements arrow = doc.select(".gEePkg span[class^=\"icon\"]");
 
