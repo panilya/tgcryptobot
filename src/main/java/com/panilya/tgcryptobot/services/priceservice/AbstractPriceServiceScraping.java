@@ -1,6 +1,7 @@
-package com.panilya.tgcryptobot.services;
+package com.panilya.tgcryptobot.services.priceservice;
 
 import com.panilya.tgcryptobot.BotConfig;
+import com.panilya.tgcryptobot.services.MessageCreator;
 import com.panilya.tgcryptobot.settings.ScrapingVars;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

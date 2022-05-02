@@ -1,7 +1,9 @@
 package com.panilya.tgcryptobot.bot;
 
 import com.panilya.tgcryptobot.BotConfig;
+import com.panilya.tgcryptobot.handlers.MessageHandler;
 import com.panilya.tgcryptobot.handlers.PriceHandler;
+import com.panilya.tgcryptobot.handlers.UpdateHandler;
 import com.panilya.tgcryptobot.services.MessageCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,13 +23,7 @@ public class CryptocurrencyBot extends TelegramLongPollingBot {
 
     Logger LOGGER = LoggerFactory.getLogger(CryptocurrencyBot.class);
 
-    private static final String START_COMMAND = "/start";
-    private static final String CRYPTOCURRENCY_PRICE = "Cryptocurrency prices";
-    private static final String CONVERT_PRICE = "Currency Exchange";
-    private static final String SHOW_HELP = "Show help";
-    private final MessageCreator messageCreator = new MessageCreator();
-
-    private final PriceHandler priceHandler = new PriceHandler();
+    private final UpdateHandler updateHandler = new UpdateHandler();
 
     ExecutorService executorService = Executors.newCachedThreadPool();
 
@@ -35,48 +31,15 @@ public class CryptocurrencyBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         executorService.execute(() -> {
             LOGGER.info("--------" + Thread.currentThread().getName() + "--------");
-//            System.out.println(Thread.currentThread().getName());
             long start = System.nanoTime();
-            if (update.hasMessage()) {
-                try {
-                    executeMessage(parseMessage(update.getMessage()));
-                    LOGGER.info("Processed message in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
-                } catch (Exception e) {
-                    LOGGER.error("Error while processing message", e);
-                }
-            } else if (update.hasCallbackQuery()) {
-                try {
-                    executeMessage(handleCallbackQuery(update.getCallbackQuery()));
-                    LOGGER.info("Processed message in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
-                } catch (Exception e) {
-                    LOGGER.error("Error while processing callback", e);
-                }
+            if  (update.hasCallbackQuery()) {
+                String callbackQueryId = update.getCallbackQuery().getId();
+                AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery(callbackQueryId);
+                executeAnswerCallbackQuery(answerCallbackQuery);
             }
+            executeMessage(updateHandler.handleUpdate(update));
+            LOGGER.info("Processed message in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
         });
-    }
-
-    private SendMessage handleCallbackQuery(CallbackQuery callbackQuery) throws Exception {
-        Message callbackMessage = callbackQuery.getMessage();
-        String data = callbackQuery.getData();
-        LOGGER.info(callbackQuery.getData());
-        AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery(callbackQuery.getId());
-        execute(answerCallbackQuery);
-        return priceHandler.parseCryptocurrency(callbackMessage, data);
-    }
-
-    private SendMessage parseMessage(Message message) throws Exception {
-        switch (message.getText()) {
-            case START_COMMAND:
-                return messageCreator.createBasicMessage(message, "\uD83D\uDCC8 Choose what you want to do");
-            case CRYPTOCURRENCY_PRICE:
-                return messageCreator.createInlineMessage(message, "Select:");
-            case CONVERT_PRICE:
-                return messageCreator.createExchangeBotMessage(message);
-            case SHOW_HELP:
-                return messageCreator.createShowHelpMessage(message);
-            default:
-                return priceHandler.parseCryptocurrency(message, message.getText());
-        }
     }
 
     private void executeMessage(SendMessage message) {
@@ -84,6 +47,14 @@ public class CryptocurrencyBot extends TelegramLongPollingBot {
             execute(message);
         } catch(TelegramApiException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void executeAnswerCallbackQuery(AnswerCallbackQuery answerCallbackQuery) {
+        try {
+            execute(answerCallbackQuery);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
         }
     }
 

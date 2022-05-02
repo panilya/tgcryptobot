@@ -1,4 +1,4 @@
-package com.panilya.tgcryptobot.services;
+package com.panilya.tgcryptobot.services.priceservice;
 
 public enum CoinRegistry {
     BTC("BTC"),

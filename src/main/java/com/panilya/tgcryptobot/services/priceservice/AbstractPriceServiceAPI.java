@@ -1,7 +1,8 @@
-package com.panilya.tgcryptobot.services;
+package com.panilya.tgcryptobot.services.priceservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.panilya.tgcryptobot.entities.cryptoCoinEntity.CryptoCoinEntity;
+import com.panilya.tgcryptobot.services.MessageCreator;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;

@@ -1,7 +1,6 @@
-package com.panilya.tgcryptobot.services.scrapingservices;
+package com.panilya.tgcryptobot.services.priceservice.scrapingservices;
 
-import com.panilya.tgcryptobot.services.AbstractPriceServiceScraping;
-import com.panilya.tgcryptobot.settings.ScrapingVars;
+import com.panilya.tgcryptobot.services.priceservice.AbstractPriceServiceScraping;
 
 public class CardanoPriceServiceScraping extends AbstractPriceServiceScraping {
     @Override

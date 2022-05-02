@@ -1,9 +1,9 @@
-package com.panilya.tgcryptobot.services.priceservicefactories;
+package com.panilya.tgcryptobot.services.priceservice.priceservicefactories;
 
-import com.panilya.tgcryptobot.services.PriceService;
-import com.panilya.tgcryptobot.services.apiservices.BitcoinPriceServiceAPI;
-import com.panilya.tgcryptobot.services.apiservices.DogecoinPriceServiceAPI;
-import com.panilya.tgcryptobot.services.apiservices.LitecoinPriceServiceAPI;
+import com.panilya.tgcryptobot.services.priceservice.PriceService;
+import com.panilya.tgcryptobot.services.priceservice.apiservices.BitcoinPriceServiceAPI;
+import com.panilya.tgcryptobot.services.priceservice.apiservices.DogecoinPriceServiceAPI;
+import com.panilya.tgcryptobot.services.priceservice.apiservices.LitecoinPriceServiceAPI;
 
 public class DefaultPriceServiceFactoryAPI implements PriceServiceFactory {
 

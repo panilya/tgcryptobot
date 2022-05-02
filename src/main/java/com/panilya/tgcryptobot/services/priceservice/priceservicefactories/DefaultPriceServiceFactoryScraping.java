@@ -1,7 +1,7 @@
-package com.panilya.tgcryptobot.services.priceservicefactories;
+package com.panilya.tgcryptobot.services.priceservice.priceservicefactories;
 
-import com.panilya.tgcryptobot.services.PriceService;
-import com.panilya.tgcryptobot.services.scrapingservices.*;
+import com.panilya.tgcryptobot.services.priceservice.PriceService;
+import com.panilya.tgcryptobot.services.priceservice.scrapingservices.*;
 
 public class DefaultPriceServiceFactoryScraping implements PriceServiceFactory {
 

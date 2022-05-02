@@ -1,4 +1,4 @@
-package com.panilya.tgcryptobot.services.priceservicefactories;
+package com.panilya.tgcryptobot.services.priceservice.priceservicefactories;
 
 import com.panilya.tgcryptobot.BotConfig;
 

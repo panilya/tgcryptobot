@@ -1,6 +1,7 @@
 package com.panilya.tgcryptobot.services;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 public class MessageCreator {
@@ -10,6 +11,14 @@ public class MessageCreator {
                 .chatId(String.valueOf(message.getChatId()))
                 .text("Enter name of coin: ")
                 .replyMarkup(new ButtonsService().createCryptocoinsListKeyboard())
+                .build();
+    }
+
+    public SendMessage createExchangeBotMessage(Message message) {
+        return SendMessage.builder()
+                .chatId(String.valueOf(message.getChatId()))
+                .text("Enter amount: ")
+                .replyMarkup(new ButtonsService().createFirstStepExchangeBot())
                 .build();
     }
 

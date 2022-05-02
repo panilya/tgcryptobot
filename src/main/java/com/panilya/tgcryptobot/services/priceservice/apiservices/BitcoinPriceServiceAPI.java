@@ -1,6 +1,6 @@
-package com.panilya.tgcryptobot.services.apiservices;
+package com.panilya.tgcryptobot.services.priceservice.apiservices;
 
-import com.panilya.tgcryptobot.services.AbstractPriceServiceAPI;
+import com.panilya.tgcryptobot.services.priceservice.AbstractPriceServiceAPI;
 import org.apache.http.client.methods.HttpGet;
 
 public class BitcoinPriceServiceAPI extends AbstractPriceServiceAPI {

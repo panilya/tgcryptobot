@@ -1,6 +1,10 @@
 package com.panilya.tgcryptobot.services;
 
 import com.google.common.collect.Lists;
+import com.panilya.tgcryptobot.services.exchangeservice.AvailableCurrencies;
+import com.panilya.tgcryptobot.services.priceservice.CoinRegistry;
+import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
+import org.telegram.telegrambots.meta.api.objects.inlinequery.InlineQuery;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -21,10 +25,29 @@ public class ButtonsService {
 
         List<KeyboardRow> keyboardRows = new ArrayList<>();
 
-        KeyboardRow keyboardButtons = new KeyboardRow();
-        keyboardButtons.add(new KeyboardButton("Show cryptocurrencies prices"));
-        keyboardButtons.add(new KeyboardButton("Information"));
-        keyboardRows.add(keyboardButtons);
+        KeyboardRow keyboardRow1 = new KeyboardRow(2);
+        KeyboardRow keyboardRow2 = new KeyboardRow(2);
+        keyboardRow1.add(new KeyboardButton("Cryptocurrency prices"));
+        keyboardRow1.add(new KeyboardButton("Currency Exchange"));
+        keyboardRow2.add(new KeyboardButton("Feedback"));
+        keyboardRow2.add(new KeyboardButton("Help"));
+        keyboardRows.add(keyboardRow1);
+        keyboardRows.add(keyboardRow2);
+        replyKeyboardMarkup.setKeyboard(keyboardRows);
+
+        return replyKeyboardMarkup;
+    }
+
+    public ReplyKeyboardMarkup createFirstStepExchangeBot() {
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        replyKeyboardMarkup.setSelective(true);
+        replyKeyboardMarkup.setResizeKeyboard(true);
+
+        List<KeyboardRow> keyboardRows = new ArrayList<>();
+        
+        KeyboardRow keyboardRow1 = new KeyboardRow(2);
+        keyboardRow1.add(new KeyboardButton("Exit"));
+        keyboardRows.add(keyboardRow1);
         replyKeyboardMarkup.setKeyboard(keyboardRows);
 
         return replyKeyboardMarkup;
