@@ -1,6 +1,9 @@
 package com.panilya.tgcryptobot.settings;
 
-public class ScrapingVars {
+public final class ScrapingVars {
+
+    private ScrapingVars() {}
+
     //TODO: refactor method's names
     //class=sc-15yy2pl-0 gEePkg
     public static final String JSOUP_PERCENTAGE_gEePkg = "span[class=sc-15yy2pl-0 gEePkg]";
