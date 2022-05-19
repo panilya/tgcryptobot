@@ -23,7 +23,7 @@ dependencies {
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.14.3'
     implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
     implementation 'org.telegram:telegrambots:6.0.1'
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.2.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha7'
     implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
     implementation 'org.logevents:logevents:0.3.1'
