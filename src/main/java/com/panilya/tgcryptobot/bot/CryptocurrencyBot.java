@@ -30,7 +30,6 @@ public class CryptocurrencyBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         executorService.execute(() -> {
-            LOGGER.info("--------" + Thread.currentThread().getName() + "--------");
             long start = System.nanoTime();
             if  (update.hasCallbackQuery()) {
                 String callbackQueryId = update.getCallbackQuery().getId();
@@ -38,7 +37,8 @@ public class CryptocurrencyBot extends TelegramLongPollingBot {
                 executeAnswerCallbackQuery(answerCallbackQuery);
             }
             executeMessage(updateHandler.handleUpdate(update));
-            LOGGER.info("Processed message in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
+            LOGGER.info("--------" + Thread.currentThread().getName() + "--------" + "\n"
+                    + "Processed message in " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
         });
     }
 
