@@ -1,6 +1,5 @@
 package com.panilya.tgcryptobot.handlers;
 
-import com.panilya.tgcryptobot.bot.CryptocurrencyBot;
 import com.panilya.tgcryptobot.services.MessageCreator;
 import com.panilya.tgcryptobot.settings.CommandNaming;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
