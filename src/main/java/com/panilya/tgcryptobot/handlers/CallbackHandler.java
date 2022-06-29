@@ -15,5 +15,4 @@ public class CallbackHandler {
         return priceHandler.parseCryptocurrency(callbackQueryMessage, callbackQueryData);
 
     }
-
 }

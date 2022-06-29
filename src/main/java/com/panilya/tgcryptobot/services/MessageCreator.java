@@ -14,14 +14,6 @@ public class MessageCreator {
                 .build();
     }
 
-    public SendMessage createExchangeBotMessage(Message message) {
-        return SendMessage.builder()
-                .chatId(String.valueOf(message.getChatId()))
-                .text("Enter amount: ")
-                .replyMarkup(new ButtonsService().createFirstStepExchangeBot())
-                .build();
-    }
-
     //TODO
     public SendMessage createShowHelpMessage(Message message) {
         return createBasicMessage(message, "To Be Done!");

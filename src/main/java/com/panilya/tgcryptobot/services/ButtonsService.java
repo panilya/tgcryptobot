@@ -1,10 +1,7 @@
 package com.panilya.tgcryptobot.services;
 
 import com.google.common.collect.Lists;
-import com.panilya.tgcryptobot.services.exchangeservice.AvailableCurrencies;
 import com.panilya.tgcryptobot.services.priceservice.CoinRegistry;
-import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
-import org.telegram.telegrambots.meta.api.objects.inlinequery.InlineQuery;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -28,7 +25,6 @@ public class ButtonsService {
         KeyboardRow keyboardRow1 = new KeyboardRow(2);
         KeyboardRow keyboardRow2 = new KeyboardRow(2);
         keyboardRow1.add(new KeyboardButton("Cryptocurrency prices"));
-        keyboardRow1.add(new KeyboardButton("Currency Exchange"));
         keyboardRow2.add(new KeyboardButton("Feedback"));
         keyboardRow2.add(new KeyboardButton("Help"));
         keyboardRows.add(keyboardRow1);
