@@ -15,5 +15,5 @@
 `setx TG_API "<token from BotFather>"`
 4. Build Dockerfile: `docker build -t tgcryptobot:1.1.2 .`
 5. Run Docker image: `docker run -p 8080:8080 -e TG_API tgcryptobot:1.1.2`
-
+6. Enjoy!
  
